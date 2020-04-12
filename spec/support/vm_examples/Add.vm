@@ -1,0 +1,3 @@
+push constant 42
+push constant 42
+add

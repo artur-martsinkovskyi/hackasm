@@ -13,7 +13,7 @@ module Vm
       expressions = parser.parse(@text)
       expressions.map do |expression|
         process_instruction(expression)
-      end.compact.join("\n")
+      end.compact.join("\n") << "\n"
     rescue Parslet::ParseFailed => failure
       failure.parse_failure_cause.ascii_tree
     end
