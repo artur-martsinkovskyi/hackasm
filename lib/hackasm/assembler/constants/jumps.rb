@@ -1,0 +1,1 @@
+JUMPS = %w[JGT JEQ JGE JLT JNE JLE JMP].freeze
