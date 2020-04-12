@@ -1,8 +1,6 @@
 # Hackasm
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/hackasm`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+A Ruby-based compiler for the Hack platform developed in the scope of the NAND to Tetris course(parts [1](https://www.coursera.org/learn/nand2tetris) and [2](https://www.coursera.org/learn/nand2tetris2).
 
 ## Installation
 
@@ -22,21 +20,20 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+This tool is a translator that is aimed to translate code from the higher level programming language in the stack of Hack platform to the lower one. 
 
-## Development
+### `new` command
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+Translate *.asm file of assembler commands to *.hack file of binary commands. This command matches the project 7 and 9 of NAND to Tetris.
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
 
-## Contributing
+### `asm2binary`command
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/hackasm. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+Translate *.vm file with virtual machine code or a folder of *.vm files to the single *.asm file of assembler commands. This command matches the project 6 of NAND to Tetris.
 
 ## Code of Conduct
 
-Everyone interacting in the Hackasm project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/[USERNAME]/hackasm/blob/master/CODE_OF_CONDUCT.md).
+Everyone interacting in the Hackasm project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/artur-martsinkovskyi/hackasm/blob/master/CODE_OF_CONDUCT.md).
 
 ## Copyright
 
