@@ -18,7 +18,7 @@ module Hackasm
     end
     map %w(--version -v) => :version
 
-    desc 'vm2asm', 'Command description...'
+    desc 'vm2asm FILE', 'Translate *.vm file with virtual machine code or a folder of *.vm files to the single *.asm file of assembler commands'
     method_option :help, aliases: '-h', type: :boolean,
                          desc: 'Display usage information'
     def vm2asm(base_path)
@@ -30,7 +30,7 @@ module Hackasm
       end
     end
 
-    desc 'asm2binary FILE', 'Translate *.asm file to *.hack binary commands'
+    desc 'asm2binary FILE', 'Translate *.asm file of assembler commands to *.hack file of binary commands'
     method_option :help, aliases: '-h', type: :boolean,
                          desc: 'Display usage information'
     def asm2binary(file)
