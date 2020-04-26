@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 module Vm
   module Instructions
     module ArithmeticOperations
       class UnaryOperation
         OPERATION_TO_INSTRUCTION = {
-          "neg" => "M=-M",
-          "not" => "M=!M"
+          'neg' => 'M=-M',
+          'not' => 'M=!M'
         }.freeze
 
         attr_reader :operation
@@ -14,7 +16,7 @@ module Vm
         end
 
         def to_asm
-          %Q{
+          %(
           @SP
           M=M-1
           @SP
@@ -22,7 +24,7 @@ module Vm
           #{OPERATION_TO_INSTRUCTION[operation]}
           @SP
           M=M+1
-          }.strip
+          ).strip
         end
 
         def self.operations

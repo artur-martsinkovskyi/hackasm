@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Vm
   module Instructions
     module MemoryAccessOperations
@@ -6,9 +8,8 @@ module Vm
           'argument' => 'ARG',
           'local' => 'LCL',
           'this' => 'THIS',
-          'that' => 'THAT',
+          'that' => 'THAT'
         }.freeze
-
 
         attr_reader :operation, :segment, :index
 
@@ -19,8 +20,8 @@ module Vm
         end
 
         def to_asm
-          if operation == "push"
-            %Q{
+          if operation == 'push'
+            %(
               @#{index}
               D=A
               @#{VIRTUAL_SEGMENT_TO_POINTER_NAME[segment]}
@@ -31,9 +32,9 @@ module Vm
               M=D
               @SP
               M=M+1
-            }.strip
+            ).strip
           else
-            %Q{
+            %(
               @SP
               M=M-1
               @SP
@@ -52,7 +53,7 @@ module Vm
               @R15
               A=M
               M=D
-            }.strip
+            ).strip
           end
         end
 

@@ -1,8 +1,9 @@
+# frozen_string_literal: true
+
 module Vm
   module Instructions
     module MemoryAccessOperations
       class ConstantOperation
-
         attr_reader :index
 
         def initialize(index)
@@ -10,7 +11,7 @@ module Vm
         end
 
         def to_asm
-          %Q{
+          %(
             @#{index}
             D=A
             @SP
@@ -18,7 +19,7 @@ module Vm
             M=D
             @SP
             M=M+1
-          }.strip
+          ).strip
         end
 
         def self.segments

@@ -13,16 +13,16 @@ module Hackasm
         @options = options
       end
 
-      def execute(input: $stdin, output: $stdout)
+      def execute(output: $stdout)
         if File.directory?(base_path)
-          assembler_code = Dir[File.join(base_path, "*")].inject do |code_buffer, path|
-            object_name = File.basename(path, ".vm")
+          assembler_code = Dir[File.join(base_path, '*')].inject do |code_buffer, path|
+            object_name = File.basename(path, '.vm')
             vm_code = File.read(path)
             code_buffer + Vm::Translator.new(vm_code, object_name).translate
           end
           file_name = "#{base_path}.asm"
         else
-          object_name = File.basename(base_path, ".vm")
+          object_name = File.basename(base_path, '.vm')
           vm_code = File.read(base_path)
           assembler_code = Vm::Translator.new(vm_code, object_name).translate
           file_name = File.join(File.dirname(base_path), "#{object_name}.asm")

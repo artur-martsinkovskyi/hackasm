@@ -1,8 +1,9 @@
+# frozen_string_literal: true
+
 module Vm
   module Instructions
     module MemoryAccessOperations
       class StaticOperation
-
         attr_reader :object_name, :index
 
         def initialize(object_name, index)
@@ -11,8 +12,8 @@ module Vm
         end
 
         def to_asm
-          if operation == "push"
-            %Q{
+          if operation == 'push'
+            %(
               @#{object_name}.#{index}
               D=M
               @SP
@@ -20,9 +21,9 @@ module Vm
               M=D
               @SP
               M=M+1
-            }.strip
+            ).strip
           else
-            %Q{
+            %(
               @SP
               M=M-1
               @SP
@@ -30,7 +31,7 @@ module Vm
               D=M
               @#{object_name}.#{index}
               M=D
-            }.strip
+            ).strip
           end
         end
 

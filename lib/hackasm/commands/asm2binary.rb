@@ -6,14 +6,14 @@ require_relative '../assembler/translator'
 module Hackasm
   module Commands
     class Asm2Binary < Hackasm::Command
-      FILE_NAME = "a.hack".freeze
+      FILE_NAME = 'a.hack'
 
       def initialize(file, options)
         @file = file
         @options = options
       end
 
-      def execute(input: $stdin, output: $stdout)
+      def execute(output: $stdout)
         assembler_code = File.read(@file)
 
         binary = Assembler::Translator.new(assembler_code).translate

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative './arithmetic_operations/comparison'
 require_relative './arithmetic_operations/binary_operation'
 require_relative './arithmetic_operations/unary_operation'
@@ -13,13 +15,13 @@ module Vm
 
       def to_asm
         comment + case operation
-        when *ArithmeticOperations::Comparison.operations
-          ArithmeticOperations::Comparison.new(operation).to_asm
-        when *ArithmeticOperations::UnaryOperation.operations
-          ArithmeticOperations::UnaryOperation.new(operation).to_asm
-        when *ArithmeticOperations::BinaryOperation.operations
-          ArithmeticOperations::BinaryOperation.new(operation).to_asm
-        end.split("\n").map(&:strip).join("\n")
+                  when *ArithmeticOperations::Comparison.operations
+                    ArithmeticOperations::Comparison.new(operation).to_asm
+                  when *ArithmeticOperations::UnaryOperation.operations
+                    ArithmeticOperations::UnaryOperation.new(operation).to_asm
+                  when *ArithmeticOperations::BinaryOperation.operations
+                    ArithmeticOperations::BinaryOperation.new(operation).to_asm
+                  end.split("\n").map(&:strip).join("\n")
       end
 
       def comment

@@ -1,11 +1,13 @@
+# frozen_string_literal: true
+
 require 'parslet'
 
 module Vm
   class VmCodeParser < Parslet::Parser
-    COMMENT_DELIMITER = "//".freeze
-    ARITHMETIC_OPERATIONS = %w[add sub neg eq gt lt and or not]
-    MEMORY_ACCESS_OPERATIONS = %w[push pop]
-    MEMORY_SEGMENTS = %w[argument local static constant this that pointer temp]
+    COMMENT_DELIMITER = '//'
+    ARITHMETIC_OPERATIONS = %w[add sub neg eq gt lt and or not].freeze
+    MEMORY_ACCESS_OPERATIONS = %w[push pop].freeze
+    MEMORY_SEGMENTS = %w[argument local static constant this that pointer temp].freeze
 
     root :lines
 
@@ -14,7 +16,7 @@ module Vm
     rule(:line)                  { space? >> instruction.maybe >> space? >> comment.maybe >> newline }
     rule(:lines)                 { line.repeat }
 
-    rule(:instruction)            { arithmetic_instruction | memory_access_instruction }
+    rule(:instruction) { arithmetic_instruction | memory_access_instruction }
 
     rule(:comment)               { (str(COMMENT_DELIMITER) >> (newline.absent? >> any).repeat) }
 
@@ -26,11 +28,15 @@ module Vm
 
     # ARITHMETIC INSTRUCTIONS
 
-    rule(:arithmetic_instruction) { ARITHMETIC_OPERATIONS.map { |e| str(e).as(:operation) }.inject(:|).as(:arithmetic_instruction) }
+    rule(:arithmetic_instruction) do
+      ARITHMETIC_OPERATIONS.map { |e| str(e).as(:operation) }.inject(:|).as(:arithmetic_instruction)
+    end
 
     # MEMORY ACCESS INSTRUCTIONS
 
-    rule(:memory_access_instruction) { (operation >> space >> segment >> space >> integer.as(:index)).as(:memory_access_instruction) }
+    rule(:memory_access_instruction) do
+      (operation >> space >> segment >> space >> integer.as(:index)).as(:memory_access_instruction)
+    end
 
     rule(:operation) { MEMORY_ACCESS_OPERATIONS.map { |e| str(e).as(:operation) }.inject(:|) }
 

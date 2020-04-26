@@ -1,8 +1,10 @@
-require "pry"
-require_relative "./hack_parser"
-require_relative "./symbol_table"
-require_relative "./instructions/address_instruction"
-require_relative "./instructions/command_instruction"
+# frozen_string_literal: true
+
+require 'pry'
+require_relative './hack_parser'
+require_relative './symbol_table'
+require_relative './instructions/address_instruction'
+require_relative './instructions/command_instruction'
 
 module Assembler
   class Translator
@@ -15,8 +17,8 @@ module Assembler
       expressions.map do |expression|
         process_instruction(expression)
       end.compact.join("\n") << "\n"
-    rescue Parslet::ParseFailed => failure
-      failure.parse_failure_cause.ascii_tree
+    rescue Parslet::ParseFailed => e
+      e.parse_failure_cause.ascii_tree
     end
 
     private
@@ -32,7 +34,7 @@ module Assembler
         Instructions::CommandInstruction.new(instruction_body).to_b
       when :jump_label
         nil
-      else raise "Unknown instruction!"
+      else raise 'Unknown instruction!'
       end
     end
 

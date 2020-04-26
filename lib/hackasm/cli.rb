@@ -16,9 +16,11 @@ module Hackasm
       require_relative 'version'
       puts "v#{Hackasm::VERSION}"
     end
-    map %w(--version -v) => :version
+    map %w[--version -v] => :version
 
-    desc 'vm2asm FILE', 'Translate *.vm file with virtual machine code or a folder of *.vm files to the single *.asm file of assembler commands'
+    desc 'vm2asm FILE',
+         'Translate *.vm file with virtual machine code or a folder of *.vm files'\
+         ' to the single *.asm file of assembler commands'
     method_option :help, aliases: '-h', type: :boolean,
                          desc: 'Display usage information'
     def vm2asm(base_path)

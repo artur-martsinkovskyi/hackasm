@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative './memory_access_operations/static_operation'
 require_relative './memory_access_operations/constant_operation'
 require_relative './memory_access_operations/fixed_segment_operation'
@@ -17,15 +19,15 @@ module Vm
 
       def to_asm
         comment + case segment
-        when *MemoryAccessOperations::ConstantOperation.segments
-          MemoryAccessOperations::ConstantOperation.new(index).to_asm
-        when *MemoryAccessOperations::StaticOperation.segments
-          MemoryAccessOperations::StaticOperation.new(index, object_name).to_asm
-        when *MemoryAccessOperations::VirtualSegmentOperation.segments
-          MemoryAccessOperations::VirtualSegmentOperation.new(operation, segment, index).to_asm
-        when *MemoryAccessOperations::FixedSegmentOperation.segments
-          MemoryAccessOperations::FixedSegmentOperation.new(operation, segment, index).to_asm
-        end.split("\n").map(&:strip).join("\n")
+                  when *MemoryAccessOperations::ConstantOperation.segments
+                    MemoryAccessOperations::ConstantOperation.new(index).to_asm
+                  when *MemoryAccessOperations::StaticOperation.segments
+                    MemoryAccessOperations::StaticOperation.new(index, object_name).to_asm
+                  when *MemoryAccessOperations::VirtualSegmentOperation.segments
+                    MemoryAccessOperations::VirtualSegmentOperation.new(operation, segment, index).to_asm
+                  when *MemoryAccessOperations::FixedSegmentOperation.segments
+                    MemoryAccessOperations::FixedSegmentOperation.new(operation, segment, index).to_asm
+                  end.split("\n").map(&:strip).join("\n")
       end
 
       def comment

@@ -1,12 +1,14 @@
+# frozen_string_literal: true
+
 module Vm
   module Instructions
     module ArithmeticOperations
       class BinaryOperation
         OPERATION_TO_INSTRUCTION = {
-          "add" => "M=M+D",
-          "sub" => "M=M-D",
-          "and" => "M=M&D",
-          "or" => "M=M|D",
+          'add' => 'M=M+D',
+          'sub' => 'M=M-D',
+          'and' => 'M=M&D',
+          'or' => 'M=M|D'
         }.freeze
 
         attr_reader :operation
@@ -16,7 +18,7 @@ module Vm
         end
 
         def to_asm
-          %Q{
+          %(
             @SP
             M=M-1
             @SP
@@ -29,7 +31,7 @@ module Vm
             #{instruction}
             @SP
             M=M+1
-          }.strip
+          ).strip
         end
 
         def self.operations

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Assembler
   module Instructions
     class AddressInstruction
@@ -7,9 +9,9 @@ module Assembler
       end
 
       def to_b
-        if memory_address = @instruction[:memory_address]
+        if (memory_address = @instruction[:memory_address])
           memory_address.to_i
-        elsif identifier = @instruction[:identifier]
+        elsif (identifier = @instruction[:identifier])
           @symbol_table[identifier]
         end.to_s(2).rjust(16, '0')
       end

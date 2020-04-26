@@ -1,12 +1,14 @@
+# frozen_string_literal: true
+
 require 'hackasm/commands/asm2binary'
 
 RSpec.describe Hackasm::Commands::Asm2Binary do
-  it "executes `asm2binary` command successfully" do
+  it 'executes `asm2binary` command successfully' do
     output = StringIO.new
     options = {}
-    filename = __dir__ + "/../support/assembler_examples/Add.asm"
+    filename = __dir__ + '/../support/assembler_examples/Add.asm'
 
-    expected_output = File.read(__dir__ + "/../support/assembler_examples/Add.hack")
+    expected_output = File.read(__dir__ + '/../support/assembler_examples/Add.hack')
 
     command = Hackasm::Commands::Asm2Binary.new(filename, options)
 
